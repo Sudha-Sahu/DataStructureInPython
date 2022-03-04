@@ -5,24 +5,18 @@ def check_parenthesis_balanced(expr):
 	to order the performance of operations. Ensure parentheses must appear in a balanced fashion."""
 
 	stack = []
-
+	open_paren = ["(", "{", "["]
+	close_paren = [")", "}", "]"]
 	# Traversing the Expression
 	for char in expr:
-		if char in ["(", "{", "["]:
+		if char in open_paren:
 			stack.append(char)
 		else:
 			if not stack:
 				return False
 			current_char = stack.pop()
-			if current_char == '(':
-				if char != ")":
-					return False
-			if current_char == '{':
-				if char != "}":
-					return False
-			if current_char == '[':
-				if char != "]":
-					return False
+			if current_char == close_paren:
+				return False
 
 	# Check Empty Stack
 	if stack:
@@ -38,4 +32,3 @@ if __name__ == "__main__":
 		print("Stack is Balanced")
 	else:
 		print("Stack is not Balanced")
-
